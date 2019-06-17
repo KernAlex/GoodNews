@@ -3,6 +3,7 @@ debug = True
 # Added samples for testing. F
 # bad: http://www.baystreet.ca/articles/techinsider.aspx?articleid=48609
 # good: https://www.zacks.com/stock/news/413724/twist-bioscience-twst-catches-eye-stock-jumps-8?cid=CS-MKTWTCH-HL-413724
+# neutral: https://globalnews.ca/news/3393970/first-look-at-gender-neutral-washrooms-at-sacred-heart-community-school/
 if debug:
     sample_bad_article = "Markets are now realizing the rapid growth in Software-as-a-Service (or ‘SaaS’) companies " \
                      "is over. Pivotal (NYSE:PVTL) and Cloudera (NYSE:CLDR) both spooked investors after reporting " \
