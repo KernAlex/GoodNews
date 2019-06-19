@@ -28,6 +28,7 @@ def remove_brackets(string):
             result += i
     return result
 
+
 def extract_sentences(string):
     """
     :param string:
@@ -36,7 +37,7 @@ def extract_sentences(string):
     >>> raw = f.read()
     >>> f.close()
     >>> extract_sentences(raw)[:100]
-    'Published: June 7, 2019 8:17 a.m. ETDocuSign Inc. exceeded expectations with its headline results on'
+    ' Published: June 7, 2019 8:17 a.m. ET DocuSign Inc. exceeded expectations with its headline results '
     """
     string = str(string)
     result = ''
@@ -57,12 +58,11 @@ def extract_sentences(string):
                 continue
             temp_string += i
         new_set.append(temp_string.replace('  ', ''))
-
     for string in new_set:
         if sentence_or_add(string):
+            if string[len(string) - 1] != ' ':
+                result += ' '
             result += string
-
-
     return result
 
 def sentence_or_add(string):
@@ -86,7 +86,7 @@ def sentence_or_add(string):
     """
     if len(string) < 10:
         return False
-    punctuation_set = {'!', '.', '?'}
+    punctuation_set = {'!', '.', '?', ']'}
     if '©' in string:
         return False
     for i in range(len(string) - 10, len(string)):
@@ -98,4 +98,9 @@ if debug:
     doctest.testmod()
 
 if __name__=="__main__":
+    import requests
+    my_site = requests.get(
+        "https://www.pbs.org/newshour/science/how-bad-is-the-measles-comeback-heres-70-years-of-data")
+    text = str(my_site.text)
+    print(extract_sentences(text))
     doctest.testmod()
