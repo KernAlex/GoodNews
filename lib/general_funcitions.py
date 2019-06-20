@@ -2,32 +2,6 @@ import doctest
 from bs4 import BeautifulSoup
 debug = False
 
-def remove_brackets(string):
-    """
-    :param string: input of a string usually containg css code with brackets.
-    :return:
-    >>> s = '<a href="https://www.somecreap.com"> {function : do some stuff} <p> some text </p>'
-    >>> remove_brackets(s)
-    '<a href="https://www.somecreap.com">  <p> some text </p>'
-    >>> s = 'this { is { some {} {nested} bracket} stuff} test'
-    >>> remove_brackets(s)
-    'this  test'
-    >>> s = 'The file { didnt end with this bracket, { but it should still work'
-    >>> remove_brackets(s)
-    'The file '
-    """
-    brackets_seen = 0
-    result = ''
-    for i in string:
-        if i == '{':
-            brackets_seen += 1
-        elif i == '}':
-            brackets_seen -= 1
-            continue
-        if brackets_seen <= 0:
-            result += i
-    return result
-
 
 def extract_sentences(string):
     """
@@ -65,6 +39,7 @@ def extract_sentences(string):
             result += string
     return result
 
+
 def sentence_or_add(string):
     """
     :param string:
@@ -94,6 +69,31 @@ def sentence_or_add(string):
             return True
     return False
 
+
+def fix_url(domain, url):
+    """
+    :param string: must be a url, no spaces, and no added '?'s
+    :return: a clensed url
+    >>> domain = 'https://www.gayhar.com'
+    >>> url = 'https://www.gayhar.com/totaly/not/porn/?psource=gayporn.com'
+    >>> fix_url(domain, url)
+    https://www.gayhar.com/totaly/not/porn
+    >>> url = 'https://gayhar.com/totaly/not/porn/?psource=gayporn.com'
+    >>> fix_url(domain, url)
+    Traceback (most recent call last):
+    AssertionError: domain https://www.gayhar.com is not in url
+    >>> url = '/some/other/part/of/the/page'
+    >>> fix_url(domain, url)
+    'https://www.gayhar.com/some/other/part/of/the/page'
+    >>> url = '/some/other/part/of/the/page'
+    """
+    if url[0] != '/':
+        domain_len = len(domain)
+        assert domain in url[:domain_len], 'domain {} is not in url'.format(domain)
+    pass
+
+
+
 if debug:
     doctest.testmod()
 
@@ -103,4 +103,5 @@ if __name__=="__main__":
         "https://www.pbs.org/newshour/science/how-bad-is-the-measles-comeback-heres-70-years-of-data")
     text = str(my_site.text)
     print(extract_sentences(text))
+    # Gruhar, how to debug one thing at a time: https://stackoverflow.com/questions/10080157/is-it-possible-to-only-test-specific-functions-with-doctest-in-a-module
     doctest.testmod()
