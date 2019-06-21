@@ -81,7 +81,7 @@ def fix_url(url):
     >>> url = 'https://gayhar.com/totaly/not/porn/?psource=gayporn.com'
     >>> fix_url(url)
     ('https://gayhar.com', 'https://gayhar.com/totaly/not/porn')
-    >>> 'http://www.gayhar.com/totaly/not/porn/?psource=gayporn.com'
+    >>> url = 'http://www.gayhar.com/totaly/not/porn/?psource=gayporn.com'
     """
     # TODO: YOUR CODE HERE
     return 'http://github.com', 'https://github.com/KernAlex/GoodNews/blob/master/lib/article.py'

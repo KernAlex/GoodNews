@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36d4f3de-04e8-4679-ab52-1c4594ca8ae0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/article.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/article.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/general_funcitions.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/general_funcitions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/newspaper.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/newspaper.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,8 +59,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/general_funcitions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="104" column="103" selection-start-line="104" selection-start-column="103" selection-end-line="104" selection-end-column="103" />
+            <state relative-caret-position="135">
+              <caret line="83" column="14" selection-start-line="83" selection-start-column="14" selection-end-line="83" selection-end-column="14" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -361,8 +358,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/general_funcitions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="104" column="103" selection-start-line="104" selection-start-column="103" selection-end-line="104" selection-end-column="103" />
+        <state relative-caret-position="135">
+          <caret line="83" column="14" selection-start-line="83" selection-start-column="14" selection-end-line="83" selection-end-column="14" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
