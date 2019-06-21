@@ -70,28 +70,40 @@ def sentence_or_add(string):
     return False
 
 
-def fix_url(domain, url):
+def fix_url(url):
     """
-    :param string: must be a url, no spaces, and no added '?'s
+    :param string: a url of various forms. The purpose of this function
+    is to take in a url with potential noise, andd return the specific domain name
     :return: a clensed url
-    >>> domain = 'https://www.gayhar.com'
     >>> url = 'https://www.gayhar.com/totaly/not/porn/?psource=gayporn.com'
-    >>> fix_url(domain, url)
-    https://www.gayhar.com/totaly/not/porn
+    >>> fix_url(url)
+    ('https://www.gayhar.com', 'https://www.gayhar.com/totaly/not/porn')
     >>> url = 'https://gayhar.com/totaly/not/porn/?psource=gayporn.com'
-    >>> fix_url(domain, url)
-    Traceback (most recent call last):
-    AssertionError: domain https://www.gayhar.com is not in url
-    >>> url = '/some/other/part/of/the/page'
-    >>> fix_url(domain, url)
-    'https://www.gayhar.com/some/other/part/of/the/page'
-    >>> url = '/some/other/part/of/the/page'
+    >>> fix_url(url)
+    ('https://gayhar.com', 'https://gayhar.com/totaly/not/porn')
+    >>> 'http://www.gayhar.com/totaly/not/porn/?psource=gayporn.com'
     """
-    if url[0] != '/':
-        domain_len = len(domain)
-        assert domain in url[:domain_len], 'domain {} is not in url'.format(domain)
-    pass
+    # TODO: YOUR CODE HERE
+    return 'http://github.com', 'https://github.com/KernAlex/GoodNews/blob/master/lib/article.py'
 
+
+def get_domain(url):
+    """
+    :param url: a string. could be something ugly like
+                'https://github.com/KernAlex/GoodNews/blob/master/lib/article.py', only
+                returns the url
+    :return:    https://github.com
+    >>> url = 'http://www.gayhar.com/totaly/not/porn/?psource=gayporn.com'
+    >>> get_domain(url)
+    'http://www.gayhar.com'
+    >>> get_domain("gayhar.com/ahdfkg")
+    'https://gayhar.com'
+    >>> url = 'https://www.gayhar.com/totaly/not/porn/?psource=gayporn.com'
+    >>> get_domain(url)
+    'https://www.gayhar.com
+    """
+    # TODO: Take in string from url, make sure it starts with http or https. if ambiguous make it https
+    pass
 
 
 if debug:
