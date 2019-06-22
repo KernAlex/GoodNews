@@ -81,7 +81,7 @@ def fix_url(url):
     >>> url = 'https://gayhar.com/totaly/not/porn/?psource=gayporn.com'
     >>> fix_url(url)
     ('https://gayhar.com', 'https://gayhar.com/totaly/not/porn')
-    >>> 'http://www.gayhar.com/totaly/not/porn/?psource=gayporn.com'
+    >>> url = 'http://www.gayhar.com/totaly/not/porn/?psource=gayporn.com'
     """
     # TODO: YOUR CODE HERE
     return 'http://github.com', 'https://github.com/KernAlex/GoodNews/blob/master/lib/article.py'
@@ -100,7 +100,7 @@ def get_domain(url):
     'https://gayhar.com'
     >>> url = 'https://www.gayhar.com/totaly/not/porn/?psource=gayporn.com'
     >>> get_domain(url)
-    'https://www.gayhar.com
+    'https://www.gayhar.com'
     """
     # TODO: Take in string from url, make sure it starts with http or https. if ambiguous make it https
     pass
