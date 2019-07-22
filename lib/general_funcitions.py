@@ -69,6 +69,7 @@ def sentence_or_add(string):
             return True
     return False
 
+clean = []
 
 def fix_url(url):
     """
@@ -83,8 +84,14 @@ def fix_url(url):
     ('https://gayhar.com', 'https://gayhar.com/totaly/not/porn')
     >>> url = 'http://www.gayhar.com/totaly/not/porn/?psource=gayporn.com'
     """
-    # TODO: YOUR CODE HERE
-    return 'http://github.com', 'https://github.com/KernAlex/GoodNews/blob/master/lib/article.py'
+    domain = get_domain(u)
+    cleaned = ""
+    cleaned += clean[0] + clean[1]
+
+    return domain, cleaned
+
+
+
 
 
 def get_domain(url):
@@ -102,9 +109,33 @@ def get_domain(url):
     >>> get_domain(url)
     'https://www.gayhar.com'
     """
-    # TODO: Take in string from url, make sure it starts with http or https. if ambiguous make it https
-    pass
+    from urllib.parse import urlparse
+    parse = urlparse(url)
+    n = "https://" + parse.netloc
 
+    p = parse.path
+
+    list = []
+    if n == "https://":
+        clean.append("https://")
+        clean.append(p)
+        for i in p:
+            list.append(i)
+            for i in reversed(list):
+                if i != "/":
+                    del i
+                else:
+                    del list[-1]
+                    q = ""
+                    for i in list:
+                        q += i
+                    q = "https://" + q
+
+                    return q
+    else:
+        clean.append(n)
+        clean.append(p)
+        return n
 
 if debug:
     doctest.testmod()
