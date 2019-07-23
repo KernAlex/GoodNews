@@ -69,9 +69,7 @@ def sentence_or_add(string):
             return True
     return False
 
-clean = []
-
-def fix_url(url):
+def fix_url(u):
     """
     :param string: a url of various forms. The purpose of this function
     is to take in a url with potential noise, andd return the specific domain name
@@ -84,58 +82,68 @@ def fix_url(url):
     ('https://gayhar.com', 'https://gayhar.com/totaly/not/porn')
     >>> url = 'http://www.gayhar.com/totaly/not/porn/?psource=gayporn.com'
     """
+    clean = []
+
+    def get_domain(url):
+        """
+        :param url: a string. could be something ugly like
+                    'https://github.com/KernAlex/GoodNews/blob/master/lib/article.py', only
+                    returns the url
+        :return:    https://github.com
+        >>> url = 'http://www.gayhar.com/totaly/not/porn/?psource=gayporn.com'
+        >>> get_domain(url)
+        'https://www.gayhar.com'
+        >>> get_domain("gayhar.com/ahdfkg")
+        'https://gayhar.com'
+        >>> url = 'https://www.gayhar.com/totaly/not/porn/?psource=gayporn.com'
+        >>> get_domain(url)
+        'https://www.gayhar.com'
+        """
+
+        from urllib.parse import urlparse
+        parse = urlparse(url)
+        n = "https://" + parse.netloc
+
+        p = parse.path
+
+        list = []
+        if n == "https://":
+            clean.append("https://")
+            clean.append(p)
+            for i in p:
+                list.append(i)
+                for i in reversed(list):
+                    if i != "/":
+                        del i
+                    else:
+                        del list[-1]
+                        q = ""
+                        for i in list:
+                            q += i
+                        q = "https://" + q
+
+                        return q
+        else:
+            clean.append(n)
+            clean.append(p)
+            return n
+
+
     domain = get_domain(u)
     cleaned = ""
-    cleaned += clean[0] + clean[1]
+    clean_butt = ""
+    clean_list = list(clean[1])
+    if clean_list[-1] == "/":
+        del clean_list[-1]
+    for i in clean_list:
+        clean_butt += i
+
+
+    cleaned += clean[0] + clean_butt
+
+
 
     return domain, cleaned
-
-
-
-
-
-def get_domain(url):
-    """
-    :param url: a string. could be something ugly like
-                'https://github.com/KernAlex/GoodNews/blob/master/lib/article.py', only
-                returns the url
-    :return:    https://github.com
-    >>> url = 'http://www.gayhar.com/totaly/not/porn/?psource=gayporn.com'
-    >>> get_domain(url)
-    'http://www.gayhar.com'
-    >>> get_domain("gayhar.com/ahdfkg")
-    'https://gayhar.com'
-    >>> url = 'https://www.gayhar.com/totaly/not/porn/?psource=gayporn.com'
-    >>> get_domain(url)
-    'https://www.gayhar.com'
-    """
-    from urllib.parse import urlparse
-    parse = urlparse(url)
-    n = "https://" + parse.netloc
-
-    p = parse.path
-
-    list = []
-    if n == "https://":
-        clean.append("https://")
-        clean.append(p)
-        for i in p:
-            list.append(i)
-            for i in reversed(list):
-                if i != "/":
-                    del i
-                else:
-                    del list[-1]
-                    q = ""
-                    for i in list:
-                        q += i
-                    q = "https://" + q
-
-                    return q
-    else:
-        clean.append(n)
-        clean.append(p)
-        return n
 
 if debug:
     doctest.testmod()
